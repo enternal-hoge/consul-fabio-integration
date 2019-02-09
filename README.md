@@ -12,7 +12,7 @@ but, I guess, This solution is more excelent.
 look like netflix eureka and zuul.
 therefore, this solution is able to use non java applications and docker container.
 
-## Perpose
+## Features
 
 consul and fabio provide following features.
 
