@@ -12,6 +12,18 @@ but, I guess, This solution is more excelent.
 look like netflix eureka and zuul.
 therefore, this solution is able to use non java applications and docker container.
 
+## Perpose
+
+consul and fabio provide following features.
+
+* Service Discovery
+* Services Self Registration to fabio 
+* API Gateway
+
+## Installation
+
+### Fabio
+
 fabio install
 ```
 # curl -O https://github.com/fabiolb/fabio/releases/download/v1.5.10/fabio-1.5.10-go1.11.1-linux_amd64
@@ -82,3 +94,15 @@ Runnging Processes and Lister Port into VM3.
 | APP    : 4567       |
 =======================
 ```
+
+## WEB UI
+
+
+### Consul
+
+![consul](./image/consul.png)
+
+### Fabio
+
+![fabio](./image/fabio.png)
+
