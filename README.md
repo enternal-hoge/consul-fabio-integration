@@ -12,17 +12,22 @@ but, I guess, This solution is more excelent.
 look like netflix eureka and zuul.
 therefore, this solution is able to use non java applications and docker container.
 
-fabio installation.
+fabio install
 ```
-# curl -O <URL>
-# mv ファイル名 fabio
+# curl -O https://github.com/fabiolb/fabio/releases/download/v1.5.10/fabio-1.5.10-go1.11.1-linux_amd64
+# mv fabio-1.5.10-go1.11.1-linux_amd64 fabio
 # chmod 755 fabio
-# mv fabio /usr/local/bin
+# mv fabio /usr/lcocal/bin
 ```
 
-fabio execution
+To start fabio run
 ```
-# ./fabio
+# fabio
+```
+
+or use custom configuration file.
+```
+# fabio -cfg fabio.properties
 ```
 
 fabio default http listner port is '0.0.0.0:9990' and web ui listener port '0.0.0.0:9998'
