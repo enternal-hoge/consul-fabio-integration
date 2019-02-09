@@ -1,0 +1,17 @@
+{
+    "service": {
+      "id": "hoge",
+      "name": "hoge",
+      "check": {
+        "id": "api",
+        "name": "HTTP API on port 4567",
+        "http": "http://localhost:4567/hoge",
+        "tls_skip_verify": false,
+        "method": "GET",
+        "interval": "30s",
+        "timeout": "5s"
+      },
+      "port": 4567,
+      "tags": ["urlprefix-/hoge"]
+    }
+  }

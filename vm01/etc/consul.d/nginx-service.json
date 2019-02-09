@@ -1,0 +1,17 @@
+{
+    "service": {
+      "id": "nginx",
+      "name": "nginx",
+      "check": {
+        "id": "api",
+        "name": "HTTP API on port 80",
+        "http": "http://localhost:80/",
+        "tls_skip_verify": false,
+        "method": "GET",
+        "interval": "30s",
+        "timeout": "5s"
+      },
+      "port": 80,
+      "tags": ["urlprefix-/"]
+    }
+  }
