@@ -42,6 +42,7 @@ Consul Services into Other VM,
 
 Runnging Processes and Lister Port into VM1.
 
+```
 =======================
 |         VM1         |
 =======================
@@ -51,8 +52,10 @@ Runnging Processes and Lister Port into VM1.
 | fabio  : 9990, 9998 |
 | Nginx  : 80         |
 =======================
+```
 
 Runnging Processes and Lister Port into VM2.
+```
 =======================
 |         VM2         |
 =======================
@@ -61,8 +64,10 @@ Runnging Processes and Lister Port into VM2.
 | Consul : 8500, 8600 |
 | APP    : 5000       |
 =======================
+```
 
 Runnging Processes and Lister Port into VM3.
+```
 =======================
 |         VM3         |
 =======================
@@ -71,4 +76,4 @@ Runnging Processes and Lister Port into VM3.
 | Consul : 8500, 8600 |
 | APP    : 4567       |
 =======================
-
+```
