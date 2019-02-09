@@ -106,3 +106,47 @@ Runnging Processes and Lister Port into VM3.
 
 ![fabio](./image/fabio.png)
 
+## REST API
+
+execute curl command on VM01
+```
+# curl -s http://localhost:9998/api/routes
+[
+    {
+        "service":"page",
+        "host":"",
+        "path":"/page",
+        "src":"/page",
+        "dst":"http://172.20.92.12:5000/",
+        "opts":"",
+        "weight":1,
+        "cmd":"route add",
+        "rate1":0,
+        "pct99":0
+    },
+    {
+        "service":"hoge",
+        "host":"",
+        "path":"/hoge",
+        "src":"/hoge",
+        "dst":"http://172.20.92.13:4567/",
+        "opts":"",
+        "weight":1,
+        "cmd":"route add",
+        "rate1":0,
+        "pct99":0
+    },
+    {
+        "service":"nginx",
+        "host":"",
+        "path":"/",
+        "src":"/",
+        "dst":"http://172.20.92.11:80/",
+        "opts":"",
+        "weight":1,
+        "cmd":"route add",
+        "rate1":0,
+        "pct99":0
+    }
+]
+```
