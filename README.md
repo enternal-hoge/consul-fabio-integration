@@ -62,7 +62,7 @@ Consul Services into Other VM,
 
 ## Servers
 
-Runnging Processes and Lister Port into VM1.
+Runnging Processes and Lister Port into VM01.
 
 ```
 =======================
@@ -76,7 +76,7 @@ Runnging Processes and Lister Port into VM1.
 =======================
 ```
 
-Runnging Processes and Lister Port into VM2.
+Runnging Processes and Lister Port into VM02.
 ```
 =======================
 |        VM02         |
@@ -88,7 +88,7 @@ Runnging Processes and Lister Port into VM2.
 =======================
 ```
 
-Runnging Processes and Lister Port into VM3.
+Runnging Processes and Lister Port into VM03.
 ```
 =======================
 |        VM03         |
@@ -102,6 +102,8 @@ Runnging Processes and Lister Port into VM3.
 
 ## WEB UI
 
+Consul and Fabio provice WEB UI Consule.
+It is enable to confirm registerd services and added routing.
 
 ### Consul
 
