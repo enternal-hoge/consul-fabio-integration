@@ -66,7 +66,7 @@ Runnging Processes and Lister Port into VM1.
 |  proc  :    port    |
 =======================
 | Consul : 8500, 8600 |
-| fabio  : 9990, 9998 |
+| fabio  : 9999, 9998 |
 | Nginx  : 80         |
 =======================
 ```
@@ -154,3 +154,51 @@ Confirm registerd servce using REST API on VM01
     }
 ]
 ```
+
+## Confirm
+
+Route Nginx
+```
+# curl http://localhost:9999
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+```
+
+Route page service
+```
+# curl http://localhost:9999/page
+{ message: "page" }
+```
+
+Route hoge service
+```
+# curl http://localhost:9999/hoge
+{ message : "hoge"}
+```
+
+
+
+
