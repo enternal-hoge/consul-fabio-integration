@@ -22,6 +22,10 @@ consul and fabio provide following features.
 
 ## Installation
 
+### Consul
+
+[Install Consul](https://www.consul.io/docs/install/index.html)
+
 ### Fabio
 
 fabio install
@@ -49,13 +53,14 @@ and discovery consul services.
 
 We will beadding tiny logic into consul configuration files. this is magic.
 ```
-
+TBD
 ```
 
 Important, adding tag property urlprefix.
 
 Consul Services into Other VM, 
 
+## Servers
 
 Runnging Processes and Lister Port into VM1.
 
