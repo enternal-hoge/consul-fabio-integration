@@ -102,7 +102,7 @@ Runnging Processes and Lister Port into VM03.
 
 ## WEB UI
 
-Consul and Fabio provice WEB UI Consule.
+Consul and Fabio provide WEB UI Consule.
 It is enable to confirm registerd services and added routing.
 
 ### Consul
