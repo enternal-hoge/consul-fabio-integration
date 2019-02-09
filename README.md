@@ -100,15 +100,19 @@ Runnging Processes and Lister Port into VM3.
 
 ### Consul
 
+http://[VM01 IPAddress]:8500
+
 ![consul](./image/consul.png)
 
 ### Fabio
+
+http://[VM01 IPAddress]:9998
 
 ![fabio](./image/fabio.png)
 
 ## REST API
 
-execute curl command on VM01
+Confirm registerd servce using REST API on VM01
 ```
 # curl -s http://localhost:9998/api/routes
 [
