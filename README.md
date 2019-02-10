@@ -100,9 +100,81 @@ Runnging Processes and Lister Port into VM03.
 =======================
 ```
 
+## Consul Server configuration
+```
+# mkdir -p /etc/consul.d
+# touch /etc/consul.d/config.json
+# vi /etc/consul.d/config.json
+```
+
+/etc/consul.d/config.json
+```
+{
+    "bootstrap_expect": 3,
+    "client_addr": "0.0.0.0",
+    "datacenter": "hoge-datacenter",
+    "data_dir": "/var/consul",
+    "domain": "consul",
+    "enable_script_checks": true,
+    "dns_config": {
+        "enable_truncate": true,
+        "only_passing": true
+    },
+    "enable_syslog": false,
+    "encrypt": "XXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+    "leave_on_terminate": true,
+    "log_level": "INFO",
+    "rejoin_after_leave": true,
+    "server": true,
+    "start_join": [
+        "<YOUR VM01[HOST01] IPADDERSS>",
+        "<YOUR VM02[HOST02] IPADDERSS>",
+        "<YOUR VM03[HOST03] IPADDERSS>"
+    ],
+    "ui": true,
+    "connect": {
+        "enabled": true
+    }
+}
+```
+
+```
+# touch /etc/systemd/system/consul.service
+# vi /etc/systemd/system/consul.service
+```
+
+/etc/systemd/system/consul.service
+```
+[Unit]
+Description="HashiCorp Consul - A service mesh solution"
+Documentation=https://www.consul.io/
+Requires=network-online.target
+After=network-online.target
+
+[Service]
+User=root
+Group=root
+ExecStart=/usr/local/bin/consul agent -config-dir=/etc/consul.d/ -bind=<YOUR VM[HOST] IPADDERSS>
+ExecReload=/usr/local/bin/consul reload
+KillMode=process
+Restart=on-failure
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target
+```
+
+```
+# systemctl enable consul.service
+# systemctl start consul.service
+```
+Following step common procedure to all vm[host].
+
+
+
 ## WEB UI
 
-Consul and Fabio provide WEB UI Consule.
+Consul and Fabio provide WEB UI Console.
 It is enable to confirm registerd services and added routing.
 
 ### Consul
