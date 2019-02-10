@@ -101,6 +101,10 @@ Runnging Processes and Lister Port into VM03.
 ```
 
 ## Consul Server configuration
+
+following step common procedure to all vm[host].
+
+create consul configuration file.
 ```
 # mkdir -p /etc/consul.d
 # touch /etc/consul.d/config.json
@@ -138,6 +142,7 @@ Runnging Processes and Lister Port into VM03.
 }
 ```
 
+create unit file to consul. 
 ```
 # touch /etc/systemd/system/consul.service
 # vi /etc/systemd/system/consul.service
@@ -164,13 +169,170 @@ LimitNOFILE=65536
 WantedBy=multi-user.target
 ```
 
+consul start on boot and starting now.
 ```
 # systemctl enable consul.service
 # systemctl start consul.service
 ```
-Following step common procedure to all vm[host].
 
+## Register Consul Service Configuration
 
+this configuratoin file create per service.
+it is neccesary to register middleware or own my created service[application] into consul cluster and networking.
+
+### VM01
+
+nginx service register consul cluster.
+
+create service definition file.
+```
+# touch /etc/consul.d/nginx-service.json
+# vi /etc/consul.d/nginx-service.json
+```
+
+```
+{
+    "service": {
+      "id": "nginx",
+      "name": "nginx",
+      "check": {
+        "id": "api",
+        "name": "HTTP API on port 80",
+        "http": "http://localhost:80/",
+        "tls_skip_verify": false,
+        "method": "GET",
+        "interval": "30s",
+        "timeout": "5s"
+      },
+      "port": 80,
+      "tags": ["urlprefix-/"]
+    }
+  }
+```
+
+It is nessesary to reload add configuration files.
+```
+# consul reload
+```
+
+### VM02
+
+my python flask rest api application register consul cluster.
+
+create service definition file.
+```
+# touch /etc/consul.d/page-service.json
+# vi /etc/consul.d/page-service.json
+```
+
+```
+{
+    "service": {
+      "id": "page",
+      "name": "page",
+      "check": {
+        "id": "api",
+        "name": "HTTP API on port 5000",
+        "http": "http://localhost:5000/ping",
+        "tls_skip_verify": false,
+        "method": "GET",
+        "interval": "30s",
+        "timeout": "5s"
+      },
+      "port": 5000,
+      "tags": ["urlprefix-/page"]
+    }
+  }
+```
+
+execute reload command.
+```
+# consul reload
+```
+
+### VM03
+
+my python flask rest api application register consul cluster.
+
+create service definition file.
+```
+# touch /etc/consul.d/page-service.json
+# vi /etc/consul.d/page-service.json
+```
+
+```
+{
+    "service": {
+      "id": "page",
+      "name": "page",
+      "check": {
+        "id": "api",
+        "name": "HTTP API on port 4567",
+        "http": "http://localhost:4567/hoge",
+        "tls_skip_verify": false,
+        "method": "GET",
+        "interval": "30s",
+        "timeout": "5s"
+      },
+      "port": 4567,
+      "tags": ["urlprefix-/hoge"]
+    }
+  }
+```
+
+execute reload command.
+```
+# consul reload
+```
+
+## Start Services[Application]
+
+VM01
+```
+# docker run nginx -d
+```
+
+VM02
+```
+# python /opt/service/page.py
+```
+
+VM03
+```
+# python /opt/service/hoge.py
+```
+
+## Magic
+
+Fabio read "port" and "tags" values into consul cluster.
+therefore, it is enable to redirect backend services.
+fabio listen http listener port 9999.
+
+/etc/consul.d/page-service.json
+``
+"port": 5000,
+"tags": ["urlprefix-/page"]
+``
+
+/etc/consul.d/hoge-service.json
+``
+"port": 4567,
+"tags": ["urlprefix-/hoge"]
+``
+
+redirect vm01 to vm02
+```
+VM01 : http://<VM01 IPADDRESS>:9999/page
+⇒　redirect
+VM02 : http://<VM02 IPADDRESS>:5000/page
+```
+
+redirect vm01 to vm03
+```
+VM01 : http://<VM01 IPADDRESS>:9999/hoge
+⇒　redirect
+VM03 : http://<VM03 IPADDRESS>:4567/hoge
+```
 
 ## WEB UI
 
@@ -278,6 +440,21 @@ Route hoge service
 { message : "hoge"}
 ```
 
+## House Keeping
 
+Consul Cluster persist state data into /var/consul.
+So, It is careful to be not disk full situation.
 
+```
+# systemctl stop cousul
+# cd /var/consul/
+# rm -rf ./*
+# systemctl start consul
+```
+
+## Refer
+
+[Consul WEB Site](https://www.consul.io/)
+[Fabio WEB Site](https://fabiolb.net/)
+[Fabio Github Site](https://github.com/fabiolb/fabio)
 
