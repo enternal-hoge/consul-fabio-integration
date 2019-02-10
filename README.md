@@ -48,18 +48,6 @@ or use custom configuration file.
 
 fabio default http listner port is '0.0.0.0:9990' and web ui listener port '0.0.0.0:9998'
 
-started fabio process, after connect consul cluster.
-and discovery consul services.
-
-We will beadding tiny logic into consul configuration files. this is magic.
-```
-TBD
-```
-
-Important, adding tag property urlprefix.
-
-Consul Services into Other VM, 
-
 ## Servers
 
 Runnging Processes and Lister Port into VM01.
