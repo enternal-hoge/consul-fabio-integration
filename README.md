@@ -309,12 +309,14 @@ therefore, it is enable to redirect backend services.
 fabio listen http listener port 9999.
 
 /etc/consul.d/page-service.json
+
 ``
 "port": 5000,
 "tags": ["urlprefix-/page"]
 ``
 
 /etc/consul.d/hoge-service.json
+
 ``
 "port": 4567,
 "tags": ["urlprefix-/hoge"]
